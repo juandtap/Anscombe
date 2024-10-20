@@ -24,7 +24,7 @@ El cuarteto de Anscombe sirve como una poderosa demostración de la importancia 
 * La elección del modelo estadístico es crucial: Un mismo conjunto de datos puede ajustarse a diferentes modelos estadísticos, lo que puede llevar a conclusiones erróneas si no se elige el modelo adecuado.
 
 ![anscombe-cuarteto](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Anscombe.svg/1599px-Anscombe.svg.png)
-*Figura 1. Cuarteto de Anscombe, una demostración de la importancia de graficar los datos antes de su anális.* [fuente](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Anscombe.svg/1599px-Anscombe.svg.png)
+*Figura 1. Cuarteto de Anscombe, una demostración de la importancia de graficar los datos antes de su anális.* [fuente](https://es.wikipedia.org/wiki/Cuarteto_de_Anscombe)
 
 
 El cuarteto de Anscombe nos muestra que, aunque las estadísticas son una herramienta poderosa, no deben utilizarse de forma aislada. La visualización de los datos es un complemento esencial para obtener una comprensión completa y precisa de los fenómenos que estamos estudiando.
