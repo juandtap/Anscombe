@@ -1,0 +1,66 @@
+---
+title: "Practica1.1"
+author: "Diego Tapia"
+date: "2024-09-23"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Practica DataSaurus
+
+### Nombre: Diego Tapia 
+
+### Materia: Mineria de Datos
+
+En esta practica se va a realizar varias actividades para conocer mas sobre el lenguaje R, a continuacion las actividades que se realizaron:
+
+Cargamos las librerias:
+
+```{r}
+library(datasauRus)
+library(dplyr)
+library(ggplot2)
+```
+
+Mostramos un resumen del dataset:
+
+```{r}
+datasaurus_dozen %>%
+  group_by(dataset) %>%
+  summarize( mean_x = mean(x),
+             mean_y = mean(y),
+             std_dev_x = sd(x),
+             std_dev_y = sd(y),
+             corr_x_y = cor(x,y))
+```
+
+Graficamos
+
+```{r}
+ggplot(datasaurus_dozen,aes(x=x,y=y,colour=dataset))+geom_point()+theme_void()+theme(legend.position = "none")+ facet_wrap(~dataset, ncol=3)
+```
+
+##Actividad en clase
+
+```{r}
+dfgrupo<-datasaurus_dozen %>%
+  filter(dataset=="bullseye")
+dfgrupo
+```
+
+Calcular la regresion lineal de "bullseye"
+
+```{r}
+regresion <- lm(y~x,data=dfgrupo)
+summary(regresion)
+```
+
+grafico de la regresion
+
+```{r}
+plot(dfgrupo$x, dfgrupo$y, xlab='x', ylab='y')
+abline(regresion)
+```
