@@ -1,0 +1,85 @@
+---
+title: "Practica1.2"
+author: "Diego Tapia"
+date: "2024-09-23"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Practica DataSaurus
+
+### Nombre: Diego Tapia
+
+### Materia: Mineria de Datos
+
+### Regresión Lineal del conjunto de datos Datasaurus
+
+En esta práctica se va a realizar una regresión lineal del conjunto: **"bullseye"** del conjunto de datos de Datasaurus usando la libreria **CARET**
+
+```{r}
+# importación de librerias
+library(caret)
+library(datasauRus)
+library(ggplot2)
+library(dplyr)
+```
+
+#### Calculo de la regresion lineal para el conjunto "bullseye"
+
+Se filtra el conjunto "bullseye"
+
+```{r}
+
+bullseye_data <- datasaurus_dozen %>%
+  filter(dataset == "bullseye")
+
+bullseye_data
+
+```
+
+Se calcula la regresion lineal del conjunto "bullseye"
+
+```{r}
+
+# Crear el modelo con caret
+# Definimos el control del entrenamiento
+control <- trainControl(method = "cv",    # Validación cruzada
+                       number = 5)        # 5 folds
+
+# entrenamiento del modelo
+modelo_caret <- train(y ~ x,
+                     data = bullseye_data,
+                     method = "lm",       # Regresión lineal
+                     trControl = control)
+
+
+# prediccion
+predicciones <- predict(modelo_caret, bullseye_data)
+head(predicciones) 
+
+
+
+```
+
+Se grafica la regresión lineal del conjunto "Bullseye"
+
+```{r}
+# gráfica  datos originales vs línea de regresión
+ggplot(bullseye_data, aes(x = x, y = y)) +
+  geom_point(color = "blue", alpha = 0.5) +
+  geom_line(data = data.frame(x = bullseye_data$x,
+                             y = predicciones),
+            aes(x = x, y = y),
+            color = "red") +
+  labs(title = "Regresión Lineal con Caret - Dataset Bullseye",
+       subtitle = paste("R² =", round(modelo_caret$results$Rsquared, 4)),
+       x = "X",
+       y = "Y") +
+  theme_minimal()
+
+```
+
+El R² (R-squared) o Coeficiente de Determinación es una medida estadística que indica qué tan bien el modelo de regresión explica la variabilidad de los datos.En este caso el valor de R² es bastante bajo (0.0232), lo que quiere decir que el modelo no explica nada de la variabilidad de los datos.

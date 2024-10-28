@@ -11,11 +11,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Practica DataSaurus
 
-### Nombre: Diego Tapia 
+### Nombre: Diego Tapia
 
 ### Materia: Mineria de Datos
 
-En esta practica se va a realizar varias actividades para conocer mas sobre el lenguaje R, a continuacion las actividades que se realizaron:
+### Exploración del conjunto de datos de Datasaurus
+
+En esta práctica se va a realizar una exploración del conjunto de datos de Datasaurus:
 
 Cargamos las librerias:
 
@@ -25,7 +27,9 @@ library(dplyr)
 library(ggplot2)
 ```
 
-Mostramos un resumen del dataset:
+#### Resumen estadístico
+
+Mostramos un resumen estadístico del dataset:
 
 ```{r}
 datasaurus_dozen %>%
@@ -37,30 +41,8 @@ datasaurus_dozen %>%
              corr_x_y = cor(x,y))
 ```
 
-Graficamos
+#### Graficos de todos los conjuntos de Datasaurus
 
 ```{r}
 ggplot(datasaurus_dozen,aes(x=x,y=y,colour=dataset))+geom_point()+theme_void()+theme(legend.position = "none")+ facet_wrap(~dataset, ncol=3)
-```
-
-##Actividad en clase
-
-```{r}
-dfgrupo<-datasaurus_dozen %>%
-  filter(dataset=="bullseye")
-dfgrupo
-```
-
-Calcular la regresion lineal de "bullseye"
-
-```{r}
-regresion <- lm(y~x,data=dfgrupo)
-summary(regresion)
-```
-
-grafico de la regresion
-
-```{r}
-plot(dfgrupo$x, dfgrupo$y, xlab='x', ylab='y')
-abline(regresion)
 ```
